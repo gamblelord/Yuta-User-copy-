@@ -1,0 +1,54 @@
+-- This file is owned by GambleLord On Github! mobile friendly.
+
+-- This script should be placed in ServerScriptService
+
+-- Function to copy the avatar
+local function copyAvatar(player, targetPlayerName)
+    -- Find the target player
+    local targetPlayer = game.Players:FindFirstChild(targetPlayerName)
+    if not targetPlayer then
+        player:Kick("Target player not found.")
+        return
+    end
+
+    -- Get the target player's character
+    local targetCharacter = targetPlayer.Character
+    if not targetCharacter then
+        player:Kick("Target player's character not found.")
+        return
+    end
+
+    -- Get the player's character
+    local character = player.Character
+    if not character then
+        player:Kick("Your character not found.")
+        return
+    end
+
+    -- Copy appearance
+    for _, part in pairs(targetCharacter:GetChildren()) do
+        if part:IsA("Accessory") or part:IsA("Clothing") or part:IsA("BodyColors") then
+            part:Clone().Parent = character
+        elseif part:IsA("Shirt") or part:IsA("Pants") then
+            character[part.Name] = part:Clone()
+        end
+    end
+
+    -- Copy body colors
+    local bodyColors = targetCharacter:FindFirstChildOfClass("BodyColors")
+    if bodyColors then
+        local newBodyColors = bodyColors:Clone()
+        newBodyColors.Parent = character
+    end
+end
+
+-- Command listener
+game.Players.PlayerAdded:Connect(function(player)
+    player.Chatted:Connect(function(message)
+        local args = string.split(message, " ")
+        if args[1] == "!copyavatar" and args[2] then
+            local targetPlayerName = args[2]
+            copyAvatar(player, targetPlayerName)
+        end
+    end)
+end)
