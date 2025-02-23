@@ -1,0 +1,10 @@
+-- MainScript.lua
+
+local guiScript = loadstring(game:HttpGet("https://raw.githubusercontent.com/yourusername/yourrepository/branchname/GuiScript.lua"))()
+
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        local screenGui = guiScript:Clone()
+        screenGui.Parent = player:WaitForChild("PlayerGui")
+    end)
+end)
