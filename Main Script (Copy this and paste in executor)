@@ -1,6 +1,6 @@
 -- MainScript.lua
 
-local guiScript = loadstring(game:HttpGet("https://raw.githubusercontent.com/yourusername/yourrepository/branchname/GuiScript.lua"))()
+local guiScript = loadstring(game:HttpGet(https://bit.ly/4gZt9pw))()
 
 game.Players.PlayerAdded:Connect(function(player)
     player.CharacterAdded:Connect(function(character)
