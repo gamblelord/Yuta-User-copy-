@@ -1,6 +1,6 @@
 -- MainScript.lua
 
-local guiScript = loadstring(game:HttpGet(https://bit.ly/4gZt9pw))()
+local guiScript = loadstring(game:HttpGet(https://github.com/gamblelord/Yuta-User-copy-/blob/main/GUI))()
 
 game.Players.PlayerAdded:Connect(function(player)
     player.CharacterAdded:Connect(function(character)
